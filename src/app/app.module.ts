@@ -3,12 +3,18 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
+//Modulos
+import { TodoModule } from './todos/todo.module';
+import { FooterComponent } from './footer/footer.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FooterComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    TodoModule
   ],
   providers: [],
   bootstrap: [AppComponent]
