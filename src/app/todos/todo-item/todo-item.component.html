@@ -1,10 +1,23 @@
 <!-- These are here just to show the structure of the list items -->
 <!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
-<li class="completed">
+<li [class.completed]="todoItem.completado"
+    [class.editing]="editando">
   <div class="view">
-  <input class="toggle" type="checkbox" checked>
-  <label>Taste JavaScript</label>
-  <button class="destroy"></button>
+  <input
+  [formControl]="checkCompletado"
+  class="toggle"
+  type="checkbox"
+  checked>
+  <label (dblclick)="editar()">{{ todoItem.texto }}</label>
+  <button
+  class="destroy"
+  (click)="borrar()"></button>
   </div>
-  <input class="edit" value="Create a TodoMVC template">
+  <input
+  [formControl]="txtInput"
+  #txtEditor
+  (keyup.enter)="guardarEdicion()"
+  (blur)="salirEdicion()"
+  class="edit"
+  type="text">
 </li>

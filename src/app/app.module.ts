@@ -1,11 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
-import { AppComponent } from './app.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 //Modulos
 import { TodoModule } from './todos/todo.module';
+
+//NGRX
+import { StoreModule } from '@ngrx/store';
+
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+//Components
+import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
+
+//Reducer
+import { appReducers } from './app.reducer';
 
 @NgModule({
   declarations: [
@@ -14,7 +26,13 @@ import { FooterComponent } from './footer/footer.component';
   ],
   imports: [
     BrowserModule,
-    TodoModule
+    ReactiveFormsModule,
+    TodoModule,
+    StoreModule.forRoot(appReducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
